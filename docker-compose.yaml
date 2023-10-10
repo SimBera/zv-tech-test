@@ -1,18 +1,33 @@
 version: '3.9'
 
 services:
-  # :O where did it go
 
   postgres:
     image: postgres:12.5
-    environment:
-      POSTGRES_DB: mvp
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
+    restart: always
     ports:
       - '5432:5432'
     volumes:
-      - 'db-data:/var/lib/postgresql/data'
+      - ~/apps/postgres:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nest-technical
+    environment:
+      - PORT=${PORT}
+      - DB_CLIENT_URL=postgresql://admin:admin@postgres:5432/mvp
+    ports:
+      - '4000:4000'
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgres
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run start
 
 volumes:
   db-data: {}
