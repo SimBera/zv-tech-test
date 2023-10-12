@@ -1,6 +1,6 @@
 import { PlayerRepository } from '../capabilities/player-repository';
 import { PlayerService } from '../capabilities/player-service';
-import { Player } from '../models/player';
+import { Player } from '../models/player.model';
 
 export class PlayerServiceImpl implements PlayerService {
   constructor(private readonly playerRepository: PlayerRepository) {}

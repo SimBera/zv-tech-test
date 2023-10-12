@@ -2,9 +2,9 @@ import { EntityRepository } from '@mikro-orm/core';
 
 import { PlayerRepository } from '../../../domain/capabilities/player-repository';
 import { PlayerNotFoundError } from '../../../domain/exceptions/player-not-found-error';
+import { Player } from '../../../domain/models/player.model';
 import { PlayerEntity } from '../entities/player';
 import { databaseError } from '../utils/error';
-import { Player } from './../../../domain/models/player';
 
 export class PlayerRepositoryImpl extends EntityRepository<PlayerEntity> implements PlayerRepository {
   private transformToModel(player: PlayerEntity): Player {

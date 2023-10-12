@@ -23,7 +23,8 @@
     "build": "rimraf ./dist && nest build",
     "start": "nest start --watch --entryFile main",
     "postinstall": "husky install",
-    "mikro-orm": "node -r ts-node/register node_modules/.bin/mikro-orm"
+    "mikro-orm": "node -r ts-node/register node_modules/.bin/mikro-orm",
+    "db:migration:up": "npm run mikro-orm migration:up"
   },
   "dependencies": {
     "@apollo/server": "4.9.4",

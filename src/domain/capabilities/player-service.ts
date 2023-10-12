@@ -1,4 +1,4 @@
-import { Player } from '../models/player';
+import { Player } from '../models/player.model';
 
 export interface PlayerService {
   getPlayer(id: string): Promise<Player>;

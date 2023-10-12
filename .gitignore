@@ -47,6 +47,9 @@ dist
 # MikroORM temp
 temp
 
+# GraphQl
+schema.gql
+
 # Environment config vars
 .env
 

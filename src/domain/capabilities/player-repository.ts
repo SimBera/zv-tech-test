@@ -1,4 +1,4 @@
-import { Player } from '../models/player';
+import { Player } from '../models/player.model';
 
 export interface PlayerRepository {
   getOneById(id: string): Promise<Player>;
