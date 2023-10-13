@@ -7,7 +7,6 @@ import { PlayerEntity } from '../entities/player';
 import { databaseError } from '../utils/error';
 
 export class PlayerRepositoryImpl extends EntityRepository<PlayerEntity> implements PlayerRepository {
-
   private transformToModel(player: PlayerEntity): Player {
     return {
       id: player.id,
@@ -43,6 +42,6 @@ export class PlayerRepositoryImpl extends EntityRepository<PlayerEntity> impleme
   }
 
   async findPlayersByTeamId(teamId: string): Promise<Player[]> {
-    return this.find({ teamId });
+    return await this.find({ teamId });
   }
 }

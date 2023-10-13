@@ -7,5 +7,5 @@ export interface PlayerService {
 
   deletePlayer(id: string): Promise<void>;
 
-  findPlayersByTeamId(teamId: string): Promise<Player[]>
+  findPlayersByTeamId(teamId: string): Promise<Player[]>;
 }

@@ -6,14 +6,14 @@ import { LoggerModule, Params } from 'nestjs-pino';
 
 import { CONFIG } from './config';
 import { PlayerServiceImpl } from './domain/services/player.service';
+import { TeamServiceImpl } from './domain/services/team.service';
 import { PlayerResolver } from './entrypoints/graphql/resolvers/player.resolver';
+import { TeamResolver } from './entrypoints/graphql/resolvers/team.resolver';
 import { factory } from './framework/provider';
 import { GraphqlModule } from './infrastructure/graphql/graphql.module';
 import { HealthCheckModule } from './infrastructure/health-check/module';
 import { PlayerEntity } from './infrastructure/persistence/entities/player';
 import { PlayerRepositoryImpl } from './infrastructure/persistence/repositories/player';
-import { TeamResolver } from './entrypoints/graphql/resolvers/team.resolver';
-import { TeamServiceImpl } from './domain/services/team.service';
 
 @Module({
   imports: [
@@ -29,7 +29,8 @@ import { TeamServiceImpl } from './domain/services/team.service';
     factory(TeamServiceImpl, []),
     factory(PlayerServiceImpl, [PlayerRepositoryImpl]),
     factory(PlayerResolver, [PlayerServiceImpl]),
-    factory(TeamResolver, [PlayerServiceImpl, TeamServiceImpl])],
+    factory(TeamResolver, [PlayerServiceImpl, TeamServiceImpl]),
+  ],
   controllers: [],
 })
-export class MainModule { }
+export class MainModule {}
