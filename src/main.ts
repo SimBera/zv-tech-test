@@ -16,7 +16,6 @@ export class Main {
       });
 
       app.enableCors({ origin: options.allowedOrigins || false });
-      // graphql does not register route name globally so middleware never gets applied if it's not excluded
       app.setGlobalPrefix(options.prefix, { exclude: ['graphql'] });
       app.useLogger(logger);
       app.flushLogs();

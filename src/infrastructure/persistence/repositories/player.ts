@@ -7,6 +7,7 @@ import { PlayerEntity } from '../entities/player';
 import { databaseError } from '../utils/error';
 
 export class PlayerRepositoryImpl extends EntityRepository<PlayerEntity> implements PlayerRepository {
+
   private transformToModel(player: PlayerEntity): Player {
     return {
       id: player.id,
@@ -39,5 +40,9 @@ export class PlayerRepositoryImpl extends EntityRepository<PlayerEntity> impleme
   async deleteOne(player: Player): Promise<void> {
     const playerRef = this.getEntityManager().getReference(PlayerEntity, player.id);
     await this.getEntityManager().remove(playerRef).flush();
+  }
+
+  async findPlayersByTeamId(teamId: string): Promise<Player[]> {
+    return this.find({ teamId });
   }
 }

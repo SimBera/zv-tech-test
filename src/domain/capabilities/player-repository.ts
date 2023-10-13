@@ -6,4 +6,6 @@ export interface PlayerRepository {
   createOne(name: string): Promise<Player>;
 
   deleteOne(player: Player): Promise<void>;
+
+  findPlayersByTeamId(teamId: string): Promise<Player[]>;
 }

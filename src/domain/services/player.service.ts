@@ -5,6 +5,10 @@ import { Player } from '../models/player.model';
 export class PlayerServiceImpl implements PlayerService {
   constructor(private readonly playerRepository: PlayerRepository) {}
 
+  async findPlayersByTeamId(teamId: string): Promise<Player[]> {
+    return await this.playerRepository.findPlayersByTeamId(teamId)
+  }
+
   async getPlayer(id: string): Promise<Player> {
     return await this.playerRepository.getOneById(id);
   }

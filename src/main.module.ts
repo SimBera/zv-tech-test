@@ -12,6 +12,8 @@ import { GraphqlModule } from './infrastructure/graphql/graphql.module';
 import { HealthCheckModule } from './infrastructure/health-check/module';
 import { PlayerEntity } from './infrastructure/persistence/entities/player';
 import { PlayerRepositoryImpl } from './infrastructure/persistence/repositories/player';
+import { TeamResolver } from './entrypoints/graphql/resolvers/team.resolver';
+import { TeamServiceImpl } from './domain/services/team.service';
 
 @Module({
   imports: [
@@ -23,7 +25,11 @@ import { PlayerRepositoryImpl } from './infrastructure/persistence/repositories/
     LoggerModule.forRoot(CONFIG.LOGGER() as Params),
     HealthCheckModule,
   ],
-  providers: [factory(PlayerServiceImpl, [PlayerRepositoryImpl]), factory(PlayerResolver, [PlayerServiceImpl])],
+  providers: [
+    factory(TeamServiceImpl, []),
+    factory(PlayerServiceImpl, [PlayerRepositoryImpl]),
+    factory(PlayerResolver, [PlayerServiceImpl]),
+    factory(TeamResolver, [PlayerServiceImpl, TeamServiceImpl])],
   controllers: [],
 })
-export class MainModule {}
+export class MainModule { }
